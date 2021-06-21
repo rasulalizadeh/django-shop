@@ -1,3 +1,4 @@
+{% load static %}
 <!doctype html>
 <html lang="en">
 <head>
@@ -6,11 +7,33 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{% block title %}{% endblock %}</title>
+    <link href="{% static 'bootstrap.min.css' %}" rel="stylesheet"/>
 </head>
 <body>
 
-{% block content %}
-{% endblock %}
+{% if user.is_authenticated %}
+<div class="navbar navbar-dark bg-dark px-3">
+    <div class="navbar-brand">
+        Shop
+    </div>
+    <div class="nav">
+        {{ user.nickname }}
+    </div>
+    <div class="navbar-item">
+        <a class="navbar-link" href="{% url 'users.logout' %}">Logout</a>
+    </div>
+</div>
+{% endif %}
+<div class="container">
+    <div class="my-5">
+
+    {% block content %}
+    {% endblock %}
+
+    </div>
+</div>
+
+<script src="{% static 'bootstrap.bundle.min.js' %}"></script>
 
 </body>
 </html>

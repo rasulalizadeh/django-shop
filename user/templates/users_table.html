@@ -1,4 +1,5 @@
 {% extends 'app_layout.html' %}
+{% load bs_tags %}
 
 {% block title %}
 Users Table
@@ -6,28 +7,59 @@ Users Table
 
 {% block content %}
 
-    {% for message in messages %}
-        <div class="">{{ message }}</div>
-    {% endfor %}
+    <div class="mb-5">
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags|bs_danger }}">{{ message }} - {{ message.tags }} - {% bs_now %}</div>
+        {% endfor %}
+    </div>
 
-    <form method="POST" action="{% url 'users' %}">
-        {% csrf_token %}
-        <input type="text" name="nickname" placeholder="Nickname">
-        <input type="text" name="username" placeholder="Username">
-        <input type="password" name="password" placeholder="Password">
-        <button type="submit">Register</button>
-    </form>
+    <div class="row">
+        <div class="col-12 col-sm-6">
+            <form method="POST" class="form d-table mx-auto" action="{% url 'users.login' %}">
+                {% csrf_token %}
+                <table>
+                    {{ login_form.as_table }}
+                </table>
+                <div class="d-grid mt-2">
+                    <button type="submit" class="btn btn-primary btn-block">Login</button>
+                </div>
+            </form>
+        </div>
+        <div class="col-12 col-sm-6">
+            <form method="POST" class="form d-table mx-auto" action="{% url 'users.register' %}">
+                {% csrf_token %}
+                <table>
+                    {{ register_form.as_table }}
+                </table>
+                <div class="d-grid mt-2">
+                    <button type="submit" class="btn btn-primary btn-block">Register</button>
+                </div>
+            </form>
+        </div>
+    </div>
 
-    <table>
+    <table class="table mt-5">
         <thead>
             <tr>
-                <th>Name</th>
+                <th>Nickname</th>
                 <th>Username</th>
                 <th>Email</th>
+                <th>Delete</th>
             </tr>
         </thead>
         <tbody>
-
+        {% for user in users %}
+            <tr>
+                <td>{{ user.nickname }}</td>
+                <td>{{ user.username }}</td>
+                <td>{{ user.email }}</td>
+                <td>
+                    <form method="get" action="{% url 'users.remove' user.id %}">
+                        <button class="btn btn-danger">Remove</button>
+                    </form>
+                </td>
+            </tr>
+        {% endfor %}
         </tbody>
     </table>
 
