@@ -1,0 +1,34 @@
+{% extends 'app_layout.html' %}
+
+{% block title %}
+Users Table
+{% endblock %}
+
+{% block content %}
+
+    {% for message in messages %}
+        <div class="">{{ message }}</div>
+    {% endfor %}
+
+    <form method="POST" action="{% url 'users' %}">
+        {% csrf_token %}
+        <input type="text" name="nickname" placeholder="Nickname">
+        <input type="text" name="username" placeholder="Username">
+        <input type="password" name="password" placeholder="Password">
+        <button type="submit">Register</button>
+    </form>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Username</th>
+                <th>Email</th>
+            </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+
+{% endblock %}
