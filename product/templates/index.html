@@ -1,9 +1,83 @@
 {% extends 'app_layout.html' %}
+{% load static %}
 
 {% block title %}
-Buy any products
+    Buy any products
 {% endblock %}
 
 {% block content %}
-{% include 'product_list.html' %}
+
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide">
+                <div class="row mb-5 px-5">
+                    <div class="col-12 col-md-6 mt-5 mt-sm-4 mt-md-3 mt-lg-2 mt-xl-1 mt-xxl-0">
+                        <img class="w-100" alt="featured product" src="{% static 'featured.jpg' %}"/>
+                    </div>
+                    <div class="col-12 col-md-6 mt-3 mt-md-0 mt-lg-4">
+                        <div class="fs-6" style="text-align: justify;">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                            labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                            laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+                            voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+                            cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="row mb-5 px-5">
+                    <div class="col-12 col-md-6 mt-5 mt-sm-4 mt-md-3 mt-lg-2 mt-xl-1 mt-xxl-0">
+                        <img class="w-100" alt="featured product" src="https://fdn.gsmarena.com/imgroot/news/21/06/sony-wf-1000xm4-review/-1200w5/gsmarena_001.jpg"/>
+                    </div>
+                    <div class="col-12 col-md-6 mt-3 mt-md-0 mt-lg-4">
+                        <div class="fs-6" style="text-align: justify;">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                            labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                            laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+                            voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+    </div>
+
+
+
+    <div class="d-flex">
+        <div class="fs-2 fw-bold mb-3 flex-grow-1">
+            Products
+        </div>
+        <div class="mt-2 pt-1">
+            <input class="form-group" name="search" placeholder="Search products ..."/>
+        </div>
+    </div>
+
+    <div class="row">
+        {% for item in products %}
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-3">
+                <div class="card">
+                    <img class="card-img" src="https://www.montblanc.com/variants/images/19971654706731692/A/w2500.jpg"
+                         alt="product-image"/>
+                    <div class="card-title px-3 mt-3 fs-5 fw-bold">
+                        Headphone 01
+                    </div>
+                    <div class="card-text px-3 mb-3 text-center">
+                        <div class="fs-6">
+                            A pair of great headphones. please visit them in our store.
+                        </div>
+                        <div class="d-flex">
+                            <button class="btn btn-primary mt-3 flex-grow-1">Shop now</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+
+
 {% endblock %}

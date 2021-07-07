@@ -13,4 +13,5 @@ class ProductApi(viewsets.ModelViewSet):
 
 
 def index(request):
-    return render(request, 'index.html')
+    products = [1,2,3,4,5,6,7,8,9,10]
+    return render(request, 'index.html', {"products": products})

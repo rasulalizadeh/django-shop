@@ -8,6 +8,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{% block title %}{% endblock %}</title>
     <link href="{% static 'bootstrap.min.css' %}" rel="stylesheet"/>
+
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css" />
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
 </head>
 <body>
 
@@ -23,6 +26,28 @@
         <a class="navbar-link" href="{% url 'users.logout' %}">Logout</a>
     </div>
 </div>
+{% else %}
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+
+    <div class="container">
+        <a class="navbar-brand">
+            Django Shop
+        </a>
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item active">
+                <a class="nav-link" href="#">Products</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Category</a>
+            </li>
+        </ul>
+        <div class="d-flex">
+            <button type="button" class="btn btn-primary">Search</button>
+        </div>
+    </div>
+
+
+</nav>
 {% endif %}
 <div class="container">
     <div class="my-5">
@@ -34,6 +59,9 @@
 </div>
 
 <script src="{% static 'bootstrap.bundle.min.js' %}"></script>
+<script src="https://unpkg.com/swiper/swiper-bundle.js"></script>
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+<script src="{% static 'app.js' %}"></script>
 
 </body>
 </html>

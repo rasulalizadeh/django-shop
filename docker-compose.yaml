@@ -4,5 +4,7 @@ version: "3"
 services:
   shop:
     build: .
-    image: shop
+    image: ghcr.io/rasulalizadeh/shop:1.0
     container_name: django_shop
+    ports:
+    - "8000:8000"

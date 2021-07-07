@@ -1,8 +1,14 @@
-FROM python
+FROM ghcr.io/rasulalizadeh/python:latest
 
-RUN apt-get update
-RUN apt-get install python3 -y
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends \
+        libmysqlclient-dev \
+    && rm -rf /var/lib/apt/lists/*
 
-COPY test.py "/opt/test.py"
+WORKDIR /usr/src/app
+COPY requirements.txt ./
+RUN pip install -r requirements.txt
+COPY . .
 
-CMD ["python3", "/opt/test.py"]
+EXPOSE 8000
+CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
