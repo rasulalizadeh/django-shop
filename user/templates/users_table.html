@@ -11,6 +11,11 @@ Users Table
         {% for message in messages %}
             <div class="alert alert-{{ message.tags|bs_danger }}">{{ message }} - {{ message.tags }} - {% bs_now %}</div>
         {% endfor %}
+        {% for key, value in register_form.errors.items %}
+            <div class="alert alert-danger">
+                field: {{ key }} -> error: {{ value }}
+            </div>
+        {% endfor %}
     </div>
 
     <div class="row">

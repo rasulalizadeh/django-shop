@@ -3,6 +3,13 @@ from .models import User
 from django.contrib import messages
 from django.contrib.auth import authenticate, logout, login
 from .forms import UserRegistrationForm, UserLoginForm
+from rest_framework import viewsets
+from . import serializers
+
+
+class UserViewSet(viewsets.ModelViewSet):
+    queryset = User.objects.all()
+    serializer_class = serializers.UserSerializer
 
 
 # Create your views here.
@@ -40,6 +47,7 @@ def register_user(request):
         else:
             for error in user_data.errors:
                 messages.error(request, error)
+
     return redirect('users')
 
 

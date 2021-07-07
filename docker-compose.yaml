@@ -1,0 +1,8 @@
+version: "3"
+
+
+services:
+  shop:
+    build: .
+    image: shop
+    container_name: django_shop
