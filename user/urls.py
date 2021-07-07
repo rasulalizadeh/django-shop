@@ -14,5 +14,5 @@ urlpatterns = [
     path('users/register', register_user, name='users.register'),
     path('users/<int:id>', remove_user, name='users.remove'),
 
-    path('', include(router.urls))
+    path('api', include(router.urls))
 ]
