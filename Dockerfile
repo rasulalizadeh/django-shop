@@ -1,14 +1,14 @@
-FROM ghcr.io/rasulalizadeh/python:latest
+FROM python:3.8.11-slim-buster
 
-RUN apt-get update \
-    && apt-get install -y --no-install-recommends \
-        libmysqlclient-dev \
-    && rm -rf /var/lib/apt/lists/*
+RUN apt-get update
+RUN pip install django django_rest_framework mysql-connector-python django-environ
+RUN apt-get install libmariadb-dev-compat default-mysql-client -y
+RUN apt-get install gcc -y
+RUN pip install mysqlclient
 
-WORKDIR /usr/src/app
-COPY requirements.txt ./
-RUN pip install -r requirements.txt
-COPY . .
+RUN mkdir /opt/website/
+COPY . /opt/website/
 
-EXPOSE 8000
+WORKDIR /opt/website/
+
 CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]

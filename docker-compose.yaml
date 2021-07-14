@@ -4,7 +4,10 @@ version: "3"
 services:
   shop:
     build: .
-    image: ghcr.io/rasulalizadeh/shop:1.0
+    image: ghcr.io/rasulalizadeh/django-shop:1.0
     container_name: django_shop
     ports:
-    - "8000:8000"
+      - "8000:8000"
+    environment:
+      DATABASE_HOST: host.docker.internal
+      DATABASE_NAME: django_session1
